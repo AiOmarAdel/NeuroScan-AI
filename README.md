@@ -177,7 +177,7 @@ Result Dashboard
 
 ### Home Page
 
-![Home Page](static/Images/Brain2.jpg)
+![Home Page](static/Images/Brain2.png)
 
 ### Brain MRI
 
