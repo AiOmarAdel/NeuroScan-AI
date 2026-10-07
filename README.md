@@ -177,7 +177,7 @@ Result Dashboard
 
 ### Home Page
 
-![Home Page](static/Images/Braincover.jpg)
+![Home Page](static/Images/Brain2.jpg)
 
 ### Brain MRI
 
@@ -185,7 +185,11 @@ Result Dashboard
 
 ### NeuroScan AI
 
-![NeuroScan AI](static/Images/Brain2.png)
+![NeuroScan AI](static/Images/InterFace.png)
+
+### NeuroScan AI
+
+![NeuroScan AI](static/Images/Feature.png)
 
 ---
 
@@ -247,7 +251,8 @@ NeuroScan-AI/
 │   └── 📁 Images/
 │       ├── Brain1.png
 │       ├── Brain2.png
-│       └── Braincover.jpg
+|       └── InterFace.jpg
+|       └── Feature.jpg   
 │
 ├── 📁 templates/
 │   └── index.html
