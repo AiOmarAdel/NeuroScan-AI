@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-------------------------------------------------------------------->
+  <title>NeuroScan AI</title>
+  <link rel="stylesheet" href="../static/Css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-------------------------------------------------------------------->
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="logo">
+        <span class="logo-icon">🧠</span>
+        <span>NeuroScan <strong>AI</strong></span>
+      </a>
+      <!-------------------------------------------------------------------->
+      <nav class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+      </nav>
+      <!-------------------------------------------------------------------->
+      <a href="#analyze" class="nav-button">Get Started</a>
+    </div>
+  </header>
+  <!-------------------------------------------------------------------->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="eyebrow">AI-POWERED MEDICAL ANALYSIS</span>
+          <h1>
+            AI-Powered Brain
+            <span>Tumor Detection</span>
+          </h1>
+          <p>
+            Analyze brain MRI scans using advanced artificial intelligence
+            to help detect possible tumor patterns quickly and accurately.
+          </p>
+          <div class="hero-buttons">
+            <a href="#analyze" class="primary-button">
+              Analyze MRI
+              <span>→</span>
+            </a>
+            <a href="#about" class="secondary-button">
+              Learn More
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-icon">◉</span>
+              <div>
+                <strong>4 Classes</strong>
+                <small>Tumor classification</small>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-icon">✦</span>
+              <div>
+                <strong>Xception Model</strong>
+                <small>AI-powered detection</small>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-icon">✓</span>
+              <div>
+                <strong>Fast Analysis</strong>
+                <small>Results in seconds</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="image-glow"></div>
+          <!-- MRI -->
+          <img
+            src="../static/images/Brain2.png"
+            alt="Brain MRI scan"
+            class="hero-image"
+          >
+          <div class="accuracy-card">
+            <span class="check-mark">✓</span>
+            <div>
+              <strong>Fast & Accurate</strong>
+              <small>AI-assisted analysis</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-------------------------------------------------------------------->
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="container about-content">
+        <div class="about-text">
+          <span class="eyebrow light">ABOUT OUR PROJECT</span>
+          <h2>
+            Smarter analysis for
+            <span>better decisions</span>
+          </h2>
+          <p>
+            NeuroScan AI is designed to assist medical professionals by
+            analyzing MRI images and identifying possible brain tumor patterns.
+            The system provides fast and organized results to support the
+            diagnostic process.
+          </p>
+          <a href="#analyze" class="light-button">
+            Analyze an MRI
+            <span>→</span>
+          </a>
+        </div>
+        <div class="brain-image-wrapper">
+          <!-- Image -->
+          <img
+            src="../static/images/Brain1.png"
+            alt="Brain illustration"
+            class="brain-image"
+          >
+        </div>
+      </div>
+    </section>
+    <!-------------------------------------------------------------------->
+    <!-- Analysis Section -->
+    <section class="analysis-section" id="analyze">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">MRI ANALYSIS</span>
+          <h2>Upload and Analyze Your MRI Scan</h2>
+          <p>
+            Upload an MRI image to view the analysis result.
+          </p>
+        </div>
+        <!-------------------------------------------------------------------->
+        <!-- Form -->
+        <form action="/" method="POST" enctype="multipart/form-data">
+          <div class="analysis-layout">
+            <!-------------------------------------------------------------------->
+            <!-- Upload Box -->
+            <div class="upload-card">
+              <div class="upload-icon">⇧</div>
+              <h3>Upload MRI Image</h3>
+              <p>
+                Drag and drop your image here<br>
+                or choose a file from your device
+              </p>
+              <input type="file" id="mriInput" name="mri_image" accept="image/*">
+              <label for="mriInput" class="upload-button">
+                Choose File
+              </label>
+              <span id="fileName" class="file-name">
+                Supported formats: JPG, PNG
+              </span>
+              <!-------------------------------------------------------------------->
+              <!-- Analysis Image -->
+              <div class="image-preview-box">
+                <img id="imagePreview" src="" alt="MRI preview">
+              </div>
+            </div>
+            <!-------------------------------------------------------------------->
+            <!-- Analysis Result -->
+            <div class="result-card">
+                <div class="result-header">
+                    <div>
+                        <span class="eyebrow">ANALYSIS RESULT</span>
+                        <h3>Detection Summary</h3>
+                    </div>
+                    <span class="result-status">
+                        {% if result %}
+                            Completed
+                        {% else %}
+                            Ready
+                        {% endif %}
+                    </span>
+                </div>
+                <!-------------------------------------------------------------------->
+                <!-- Diagnosis -->
+                <div class="diagnosis-box">
+                    <div class="diagnosis-icon">◉</div>
+                    <div>
+                        <small>Predicted Class</small>
+                        <h3>
+                            {% if result %}
+                                {{ result }}
+                            {% else %}
+                                No analysis yet
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <strong>
+                        {% if confidence %}
+                            {{ "%.2f"|format(confidence) }}%
+                        {% else %}
+                            --%
+                        {% endif %}
+                    </strong>
+                </div>
+                <!-------------------------------------------------------------------->
+                <!-- Confidence -->
+                <div class="confidence-section">
+                    <div class="progress-label">
+                        <span>Confidence Score</span>
+                        <strong>
+                            {% if confidence %}
+                                {{ "%.2f"|format(confidence) }}%
+                            {% else %}
+                                0%
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <div class="progress-bar">
+                        <span
+                            style="width: {{ confidence if confidence else 0 }}%;">
+                        </span>
+                    </div>
+                </div>
+                <!-------------------------------------------------------------------->
+                <!-- Classes -->
+                <div class="classes-list">
+                    <div>
+                        <span>
+                            <i class="dot purple"></i>
+                            Glioma
+                        </span>
+                        <strong>
+                            {% if probabilities %}
+                                {{ probabilities["glioma"] }}%
+                            {% else %}
+                                --%
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <!-------------------------------------------------------------------->
+                    <div>
+                        <span>
+                            <i class="dot blue"></i>
+                            Meningioma
+                        </span>
+                        <strong>
+                            {% if probabilities %}
+                                {{ probabilities["meningioma"] }}%
+                            {% else %}
+                                --%
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <!-------------------------------------------------------------------->
+                    <div>
+                        <span>
+                            <i class="dot green"></i>
+                            No Tumor
+                        </span>
+
+                        <strong>
+                            {% if probabilities %}
+                                {{ probabilities["notumor"] }}%
+                            {% else %}
+                                --%
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <!-------------------------------------------------------------------->
+                    <div>
+                        <span>
+                            <i class="dot orange"></i>
+                            Pituitary
+                        </span>
+                        <strong>
+                            {% if probabilities %}
+                                {{ probabilities["pituitary"] }}%
+                            {% else %}
+                                --%
+                            {% endif %}
+                        </strong>
+                    </div>
+                </div>
+                <!-------------------------------------------------------------------->
+                <!-- Analyze Button -->
+                <button type="submit" class="analyze-button">
+                    Start Analysis
+                    <span>→</span>
+                </button>
+                <!-------------------------------------------------------------------->
+            </div>  
+        </form>
+      </div>
+    </section>
+    <!-------------------------------------------------------------------->
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">WHY NEUROSCAN AI?</span>
+          <h2>Built for fast and clear analysis</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">◉</div>
+            <h3>Multiple Classes</h3>
+            <p>Classify different types of brain MRI patterns.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✦</div>
+            <h3>AI-Assisted</h3>
+            <p>Use intelligent image analysis to support your workflow.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>Simple Results</h3>
+            <p>View the prediction and confidence score clearly.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Processing</h3>
+            <p>Designed to provide analysis results quickly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-------------------------------------------------------------------->
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="logo">
+        <span class="logo-icon">🧠</span>
+        <span>NeuroScan <strong>AI</strong></span>
+      </div>
+      <p>AI-assisted MRI analysis platform</p>
+    </div>
+  </footer>
+  <!-------------------------------------------------------------------->
+  <script>
+      const mriInput = document.getElementById("mriInput");
+      const imagePreview = document.getElementById("imagePreview");
+      const fileName = document.getElementById("fileName");
+
+      mriInput.addEventListener("change", function () {
+
+          const file = this.files[0];
+
+          if (file) {
+              // Show file name
+              fileName.textContent = file.name;
+
+              // Show selected image
+              imagePreview.src = URL.createObjectURL(file);
+              imagePreview.style.display = "block";
+          }
+      });
+  </script>
+</body>
+</html>
